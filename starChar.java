@@ -1,12 +1,18 @@
 public String starOut(String str) {
   
-  String res = "";
-  
-  for (int i = 0; i < str.length()-1; i++) {
+  while (str.indexOf('*') != -1) {
     
-    if (str.charAt(i) == '*') {
-      res = str.substring(0, i-2) + str.substring(i+2);
+    if (str.equals("*")) return  "";
+    int starPos = str.indexOf('*');
+    int secStar = str.indexOf('*', starPos+1);
+    if (secStar - starPos == 1) {
+      str = str.substring(0, starPos) + str.substring(secStar);
     }
+    if (starPos == 0) str = str.substring(starPos+2);
+    else if (starPos == str.length()-1) {
+      str = str.substring(0, str.length()-2); 
+    }
+    else str = str.substring(0, starPos-1) + str.substring(starPos+2);
   }
-  return res;
+  return str;
 }
